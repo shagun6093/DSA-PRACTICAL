@@ -1,42 +1,38 @@
-#include<stdio.h>
-void SelectSort(int a[],int n)
+#include <stdio.h>
+int main()
 {
-    int i,j,temp,min;
-    for(i=0;i<n;i++)
+  int array[100], n, i, j, min, t;
+
+  printf("Enter number of elements\n");
+  scanf("%d", &n);
+
+  printf("Enter %d integers\n", n);
+
+  for (i = 0; i < n; i++)
+    scanf("%d", &array[i]);
+
+  for (i = 0; i < (n - 1); i++) // finding minimum element (n-1) times
+  {
+    min = i;
+
+    for (j = i + 1; j < n; j++)
     {
-        min=i;
-        for(j=i+1;j<n;j++)
-        {
-            if(a[j]<a[min]){
-                min=j;
-            }
-            if(min!=i)
-            {
-                temp =a[i];
-                a[i]=a[min];
-                a[min]=temp;
-            }
-        }
+      if (array[min] > array[j])
+        min = j;
     }
+    if (min != i)
+    {
+      t = array[i];
+      array[i] = array[min];
+      array[min] = t;
+    }
+  }
+
+  printf("Sorted list in ascending order:\n");
+
+  for (i= 0; i < n; i++)
+    printf("%d\n", array[i]);
+
+  return 0;
 }
 
-
-
-int main (){
-    int i,sort[100],size,choice;
-    printf("Enter the size of array:\n");
-    scanf("%d",&size);
-    printf("Enter the elements:\n");
-    for(i=0;i<size;i++)
-    {
-        scanf("%d",&sort[i]);
-        
-    }
-    SelectSort(sort,size);
-    printf("Array sorted using Selection Sort:\n");
-    printf("After Sorting:\n");
-    for(i=0;i<size;i++)
-    printf("%d\t",sort[i]);
-    
-  
-}
